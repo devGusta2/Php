@@ -1,0 +1,17 @@
+<?php
+    header("Access-Control-Allow-Origin: *");
+
+    include("conexao.php");
+
+    // Getting the received JSON into $json variable.
+    $json = file_get_contents('php://input');
+ 
+    // decoding the received JSON and store into $obj variable.
+    $obj = json_decode($json,true);
+     
+    $nome = $obj['nome'];
+    $turma = $obj['turma'];
+
+    $stmt = $pdo->prepare("insert into tbaluno values(null,'$nome','$turma','2023-05-22')");	
+    $stmt ->execute();    
+?>
